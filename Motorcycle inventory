@@ -1,0 +1,38 @@
+
+**Created a motorcycle shop inventory
+
+CREATE TABLE inventory(id INTEGER PRIMARY KEY, year INTEGER, make TEXT, miles INTEGER, color TEXT, price INTEGER);
+
+**Entered the 15 motorcycles currently in stock
+
+INSERT INTO inventory values (1, 2005, 'Harley Davidson', 11968, 'red',  11500);
+INSERT INTO inventory values (2, 2008, 'Harley Davidson', 11217, 'green', 14000);
+INSERT INTO inventory values (3, 2019, 'Harley Davidson', 12200, 'silver', 34000);
+INSERT INTO inventory values (4, 2022, 'Honda', 1, 'red', 7199);
+INSERT INTO inventory values (5, 2022, 'Kawasaki', 1247, 'black', 8889);
+INSERT INTO inventory values (6, 2022, 'Honda', 1, 'black', 4999);
+INSERT INTO inventory values (7, 2022, 'Honda', 1, 'blue', 59995);
+INSERT INTO inventory values (8, 2021, 'Honda', 1, 'red', 16499);
+INSERT INTO inventory values (9, 2017, 'Harley Davidson', 22627, 'red', 20999);
+INSERT INTO inventory values (10, 2014, 'Harley Davidson', 14264, 'silver', 12599);
+INSERT INTO inventory values (11, 2022, 'BMW', 3, 'gray', 22495);
+INSERT INTO inventory values (12, 2022, 'Triumph', 3, 'black', 14300);
+INSERT INTO inventory values (13, 2022, 'Can-Am', 1, 'black', 17999);
+INSERT INTO inventory values (14, 2022, 'Kawasaki', 1, 'red', 9199);
+INSERT INTO inventory values (15, 2022, 'BMW', 4, 'blue', 26970);
+
+**Showed all motorcycles in stock ordered by price
+
+SELECT * FROM inventory order by price;
+
+**Displayed the total value of all inventory
+
+SELECT SUM (price) from inventory;
+
+**Listed the motorcycles in stock by make
+
+SELECT * FROM inventory order by make;
+
+**Listed all inventory with less than 5 miles
+
+SELECT * FROM inventory where miles > 5;
