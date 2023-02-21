@@ -1,14 +1,20 @@
-**Looking for countries with a population over 1 billion**
+**Looking for countries with a population over 1 billion
 
 SELECT * FROM countries WHERE population > 1000000000 ORDER BY population;
 
-
+**Selecting countries with a population over 500 million or a population density over 300 per square km
 
 SELECT * FROM countries WHERE population > 500000000 OR density_per_sq_km > 300;
 
+**Ordering countries by population
+
 SELECT * FROM countries ORDER BY population;
 
+**Looking at both low population changes and fertility rates
+
 SELECT * FROM countries WHERE percent_one_year_change >1 and fertility_rate >3 order by name;
+
+**Creating catagories for high, moderate and low population density rates
 
 SELECT name, density_per_sq_km, CASE
 WHEN density_per_sq_km > 300 THEN 'high_density'
@@ -16,11 +22,18 @@ WHEN density_per_sq_km > 150 THEN 'moderate_density'
 ELSE 'low density' 
 END AS 'density_rates' FROM countries;
 
+**Determining average fertility rate across all countries
+
 SELECT AVG(fertility_rate) from countries;
+
+**Finding the country with the highest number of migrants
 
 SELECT NAME, MAX(NET_MIGRANTS) FROM countries;
 
+**Finding the country with the lowest median age
+
 SELECT name, population, MIN(median_age) from countries;
 
-SELECT name, MAX(population_change) as average_change from countries GROUP BY name HAVING density_per_sq_km > 300;
+**Listing countries with the highest population change and a population density over 300 per square km
 
+SELECT name, MAX(population_change) as average_change from countries GROUP BY name HAVING density_per_sq_km > 300;
