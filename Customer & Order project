@@ -50,3 +50,33 @@ ON feb.orderID = cust.order_id
 WHERE feb.Quantity > 2
 AND LENGTH(orderID) = 6
 AND orderID <> 'Order ID';
+
+**Orders between 02/13/19 and 02/18/19
+SELECT orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00';
+
+**Find where the order made at 2/18/19 at 01:35 originated**
+
+SELECT location
+FROM BIT_DB.FebSales 
+WHERE orderdate = '02/18/19 01:35';
+
+**Total number of items ordered on 02/18/19**
+
+SELECT sum(quantity)
+FROM BIT_DB.FebSales 
+WHERE orderdate like '02/18/19%';
+
+**Find all products containing 'batteries' as part of the item description**
+
+SELECT distinct Product
+FROM BIT_DB.FebSales
+WHERE Product like '%Batteries%';
+
+**Products sold in Los Angeles and the total quantity of each product**
+
+SELECT PRODUCT, SUM(Quantity)
+FROM BIT_DB.FebSales
+WHERE location LIKE '%los Angeles%'
+GROUP BY Product;
