@@ -1,0 +1,61 @@
+**Creating the table used for this project**
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL );
+
+**Finding the average danceability by artist and track**
+
+SELECT AVG(danceability), artist_name, track_name
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name;
+
+**Finding the top 10 artists based on popularity** 
+
+SELECT artist_name, track_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10; 
+
+**Finding the artist/song with the longest duration**
+
+SELECT artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms ASC
+LIMIT 1; 
+
+**How many songs did Dua Lipa have on the list?**
+
+SELECT artist_name, COUNT(track_name)
+FROM BIT_DB.Spotifydata
+WHERE artist_name = 'Dua Lipa';
+
+**Listing all songs with a popularity rating of 85 or higher** 
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.Spotifydata
+WHERE popularity > 84
+ORDER BY popularity DESC;
+
+**Listing the 5 artists/songs with the lowest energy rating** 
+
+SELECT track_name, artist_name, energy
+FROM BIT_DB.Spotifydata
+ORDER BY energy ASC
+LIMIT 5;
