@@ -1,0 +1,19 @@
+***ORDERING INVENTORY BY PRICE***
+SELECT item_name, price
+FROM superstore
+ORDER BY price;
+
+***FINDING THE LOWEST PRICE ITEM IN INVENTORY***
+SELECT MIN(price), item_name
+FROM superstore;
+
+***IDENTIFYING THE AVERAGE PRICE OF ITEMS LISTED AS KITCHEN SUPPLIES**
+SELECT AVG(price), category
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+***FINDING ELECTRONICS WIHT AN AVERAGE RATING ABOVE 4.2***
+SELECT average_rating, category, item_name
+FROM superstore 
+WHERE category = 'Electronics'
+AND average_rating > 4.2; 
