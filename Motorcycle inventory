@@ -1,9 +1,9 @@
 
-**Created a motorcycle shop inventory
+***Created a motorcycle shop inventory***
 
 CREATE TABLE inventory(id INTEGER PRIMARY KEY, year INTEGER, make TEXT, miles INTEGER, color TEXT, price INTEGER);
 
-**Entered the 15 motorcycles currently in stock
+***Entered the 15 motorcycles currently in stock***
 
 INSERT INTO inventory values (1, 2005, 'Harley Davidson', 11968, 'red',  11500);
 INSERT INTO inventory values (2, 2008, 'Harley Davidson', 11217, 'green', 14000);
@@ -21,18 +21,18 @@ INSERT INTO inventory values (13, 2022, 'Can-Am', 1, 'black', 17999);
 INSERT INTO inventory values (14, 2022, 'Kawasaki', 1, 'red', 9199);
 INSERT INTO inventory values (15, 2022, 'BMW', 4, 'blue', 26970);
 
-**Showed all motorcycles in stock ordered by price
+***Showed all motorcycles in stock ordered by price***
 
 SELECT * FROM inventory order by price;
 
-**Displayed the total value of all inventory
+***Displayed the total value of all inventory***
 
 SELECT SUM (price) from inventory;
 
-**Listed the motorcycles in stock by make
+***Listed the motorcycles in stock by make***
 
 SELECT * FROM inventory order by make;
 
-**Listed all inventory with less than 5 miles
+***Listed all inventory with less than 5 miles***
 
 SELECT * FROM inventory where miles > 5;
