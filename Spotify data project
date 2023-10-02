@@ -20,42 +20,48 @@ tempo decimal(6,3) NOT NULL,
 duration_ms integer NOT NULL,
 time_signature integer NOT NULL );
 
-**Finding the average danceability by artist and track**
+***Order artists by average popularity***
 
-SELECT AVG(danceability), artist_name, track_name
+SELECT artist_name, AVG(popularity) as AVG
 FROM BIT_DB.Spotifydata
-GROUP BY artist_name, track_name;
-
-**Finding the top 10 artists based on popularity** 
-
-SELECT artist_name, track_name, popularity
-FROM BIT_DB.Spotifydata
-ORDER BY popularity DESC
-LIMIT 10; 
-
-**Finding the artist/song with the longest duration**
-
-SELECT artist_name, track_name, duration_ms
-FROM BIT_DB.Spotifydata
-ORDER BY duration_ms ASC
-LIMIT 1; 
+GROUP BY artist_name
+ORDER BY AVG DESC;
 
 **How many songs did Dua Lipa have on the list?**
 
-SELECT artist_name, COUNT(track_name)
+SELECT artist_name, COUNT(track_name) AS total
 FROM BIT_DB.Spotifydata
 WHERE artist_name = 'Dua Lipa';
 
-**Listing all songs with a popularity rating of 85 or higher** 
+**Listing all songs with a popularity rating of 85 or higher, order by duration shortest to longest***
 
-SELECT track_name, artist_name, popularity
+SELECT track_name, artist_name, popularity, duration_ms
 FROM BIT_DB.Spotifydata
 WHERE popularity > 84
-ORDER BY popularity DESC;
+ORDER BY duration_ms ASC;
 
-**Listing the 5 artists/songs with the lowest energy rating** 
+
+**Listing the 5 song/artists with the lowest energy rating** 
 
 SELECT track_name, artist_name, energy
 FROM BIT_DB.Spotifydata
-ORDER BY energy ASC
-LIMIT 5;
+ORDER BY energy ASC LIMIT 5;
+
+***Find any song and the artist with a popularity rating of 90 or higher and a danceability rating of 0.8 or higher***
+
+SELECT track_name, artist_name, popularity, danceability
+FROM BIT_DB.Spotifydata
+WHERE popularity > 89
+AND danceability > 0.79;
+
+***Calculate the average popularity for the artists in the Spotify data table. Then, for every artist with an average popularity of 90 or above,
+show their name, their average popularity, and label them as a “Top Star”***
+
+WITH TEMPTABLE AS (SELECT spot.artist_name, AVG(spot.popularity) AS avg
+FROM Spotifydata spot 
+GROUP BY artist_name)
+SELECT artist_name, avg AS 'Top Star'
+FROM TEMPTABLE WHERE avg > 89
+GROUP BY artist_name 
+ORDER BY 'Top Star' DESC;
+
