@@ -1,0 +1,20 @@
+
+***Find how many albums each artists has released - most to least***
+
+SELECT COUNT(albumID) AS total, ArtistId, artists.name
+FROM chinook.albums 
+JOIN chinook.artists 
+ON albums.ArtistId = artists.ArtistId
+GROUP BY albums.artistId
+ORDER BY total DESC;
+
+***List all USA based customers along with their employee representative***
+
+SELECT customers.FirstName, customers.LastName, customers.Company, customers.Address, 
+customers.City, customers.State, customers.PostalCode, customers.Phone, 
+employees.FirstName, employees.LastName
+FROM customers
+JOIN employees
+ON customers.SupportRepId = employees.EmployeeId
+WHERE customers.Country = 'USA'; 
+
