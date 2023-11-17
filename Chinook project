@@ -18,3 +18,46 @@ JOIN employees
 ON customers.SupportRepId = employees.EmployeeId
 WHERE customers.Country = 'USA'; 
 
+***Find the total amount spent from each customer in the Czech Republic***
+
+SELECT SUM(invoices.Total), invoices.CustomerID, customers.FirstName, customers.LastName
+FROM invoices
+JOIN customers
+ON invoices.CustomerId = customers.CustomerId
+WHERE BillingCountry = 'Czech Republic'
+GROUP BY invoices.CustomerID
+
+***Find the composer who has written the most songs***
+
+SELECT COUNT(Composer) AS Total_songs, Composer
+FROM tracks
+GROUP BY Composer
+ORDER BY Total_songs DESC
+LIMIT 1;
+
+***What was the average order total for customers from Canada***
+
+SELECT ROUND(AVG(Total),2) AS Average_order
+FROM invoices
+WHERE BillingCountry = 'Canada';
+
+***Identity the three genres with the lowest amount of songs***
+SELECT COUNT(tracks.GenreId) AS TotalSongs, genres.Name
+FROM tracks
+JOIN genres
+ON tracks.GenreID = genres.GenreId
+GROUP BY genres.Name
+ORDER BY TotalSongs ASC
+LIMIT 3;
+
+***Show all invoices with a total over $20.00***
+
+SELECT * FROM invoices
+WHERE Total > '20.00';
+
+***Calculate the total North American Sales***
+
+SELECT (ROUND(SUM(Total), 2)) AS NorthAmericanSales
+FROM invoices
+WHERE BillingCountry = 'Canada'
+OR BillingCountry = 'USA';
